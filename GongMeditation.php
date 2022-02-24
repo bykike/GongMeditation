@@ -1,56 +1,68 @@
-<script type="text/javascript">
-  function ActivarReloj(){
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
 
-      //Obteniendo datos del tiempo
-      var laHora = new Date();
-      var horario = laHora.getHours();
-      var minutero = laHora.getMinutes();
-      var segundero = laHora.getSeconds();
+  <script type="text/javascript">
+    function ActivarReloj(){
 
-      if(minutero<10)
-          minutero = "0" + minutero;
-      if(segundero<10)
-          segundero = "0" + segundero;
+        //Obteniendo datos del tiempo
+        var laHora = new Date();
+        var horario = laHora.getHours();
+        var minutero = laHora.getMinutes();
+        var segundero = laHora.getSeconds();
 
-      //escribiendo sobre el campo de texto la hora actual
-      document.getElementById('sonLas').value = horario+":"+minutero+":"+segundero;
-      //Desactivando el boton 'Activar Reloj'
-      document.getElementById('botonActivar').disabled=true;
-      //Actualizando la hora cada 1 segundo
-      ahoraSonLas = setTimeout(ActivarReloj,1000);
-  }
+        if(minutero<10)
+            minutero = "0" + minutero;
+        if(segundero<10)
+            segundero = "0" + segundero;
 
-  function DetenerReloj(){
-      // Deteniendo el setTimeout
-      clearTimeout(ahoraSonLas);
-      // Volviendo el boton 'Activar Reloj' a la normalidad
-      document.getElementById('botonActivar').disabled=false;
-  }
+        //escribiendo sobre el campo de texto la hora actual
+        document.getElementById('sonLas').value = horario+":"+minutero+":"+segundero;
+        //Desactivando el boton 'Activar Reloj'
+        document.getElementById('botonActivar').disabled=true;
+        //Actualizando la hora cada 1 segundo
+        ahoraSonLas = setTimeout(ActivarReloj,1000);
+    }
 
-
-	function SonidoGong(){
-      // Deteniendo el setTimeout
-
-					var audio = new Audio("tortuoso_1.mp3");
-			    audio.play();
-
-					const myTimeout = setTimeout(FinGong, 15000);
-
-					function FinGong() {
-						var audio = new Audio("templojapones gong.mp3");
-						audio.play();
-					}
+    function DetenerReloj(){
+        // Deteniendo el setTimeout
+        clearTimeout(ahoraSonLas);
+        // Volviendo el boton 'Activar Reloj' a la normalidad
+        document.getElementById('botonActivar').disabled=false;
+    }
 
 
+  	function SonidoGong(tiempo){
+        // Deteniendo el setTimeout
 
-  }
+  					var audio = new Audio("gong-inicio.mp3");
+  			    audio.play();
 
-</script>
+  					const myTimeout = setTimeout(FinGong, tiempo);
 
-</br>
-<input type="text" id="sonLas"/></br>
+  					function FinGong() {
+  						var audio = new Audio("gong-final.mp3");
+  						audio.play();
+  					}
 
-<input type="button" onclick="SonidoGong()" id="Sonido" value="Sonar Gong"/>
+    }
 
-<input type="button" onclick="ActivarReloj()" id="botonActivar" value="Activar Reloj"/>
-<input type="button" onclick="DetenerReloj()" value="Detener Reloj"/>
+  </script>
+
+</head>
+
+  <body>
+
+
+    <!-- <input type="text" id="sonLas"/></br>
+    <input type="button" onclick="ActivarReloj()" id="botonActivar" value="Activar Reloj"/>
+    <input type="button" onclick="DetenerReloj()" value="Detener Reloj"/>
+    -->
+
+    <input type="button" onclick="SonidoGong(30000)" id="Sonido" value="Sonar Gong"/>
+
+
+
+  </body>
+</html>
